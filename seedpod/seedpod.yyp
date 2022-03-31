@@ -1,0 +1,39 @@
+{
+  "resources": [
+    {"id":{"name":"scr_seedpod_strings","path":"scripts/scr_seedpod_strings/scr_seedpod_strings.yy",},"order":1,},
+    {"id":{"name":"scr_seedpod_instances","path":"scripts/scr_seedpod_instances/scr_seedpod_instances.yy",},"order":2,},
+    {"id":{"name":"scr_seedpod_basics","path":"scripts/scr_seedpod_basics/scr_seedpod_basics.yy",},"order":0,},
+  ],
+  "Options": [
+    {"name":"Linux","path":"options/linux/options_linux.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
+    {"name":"Main","path":"options/main/options_main.yy",},
+    {"name":"Windows","path":"options/windows/options_windows.yy",},
+    {"name":"operagx","path":"options/operagx/options_operagx.yy",},
+  ],
+  "defaultScriptType": 1,
+  "isEcma": false,
+  "configs": {
+    "name": "Default",
+    "children": [],
+  },
+  "RoomOrderNodes": [],
+  "Folders": [
+    {"folderPath":"folders/scripts.yy","order":2,"resourceVersion":"1.0","name":"scripts","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/scripts/Seedpod.yy","order":1,"resourceVersion":"1.0","name":"Seedpod","tags":[],"resourceType":"GMFolder",},
+  ],
+  "AudioGroups": [
+    {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
+  ],
+  "TextureGroups": [
+    {"isScaled":true,"compressFormat":"bz2","autocrop":true,"border":2,"mipsToGenerate":0,"groupParent":null,"targets":-1,"resourceVersion":"1.3","name":"Default","resourceType":"GMTextureGroup",},
+  ],
+  "IncludedFiles": [],
+  "MetaData": {
+    "IDEVersion": "2022.3.0.624",
+  },
+  "resourceVersion": "1.5",
+  "name": "seedpod",
+  "tags": [],
+  "resourceType": "GMProject",
+}
