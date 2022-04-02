@@ -15,22 +15,23 @@ function echo(debugString) {
 	show_debug_message(result);
 }
 
-/// @function mod_wrap(value, listSize)
+/// @function mod_wrap(value, listLength)
 /// @param value The value to perform modulus on
-/// @param listSize The maximum size of the list to wrap 
+/// @param listLength The maximum size of the list to wrap 
 /// @description As mod, but deals with negative numbers so it can be used for wrapping around lists
 function mod_wrap(newValue, listLength) {
 	return ((newValue) % listLength + listLength) % listLength;
 }
 
-/// @function in_array(array, value)
-/// @param array The array whose values to check
+/// @function in_array(value, array)
 /// @param value The value to check for the presence of in the array
+/// @param array The array whose values to check
 /// @returns true if value matches any value in array, false otherwise
-function in_array(array, value) {
+function in_array(value, array) {
 	for(var i = 0; i < array_length(array); i++) {
 		if (value == array[i]) {
 			return true;
+			break;
 		}
 	}
 	return false;
