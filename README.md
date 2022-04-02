@@ -15,12 +15,12 @@ Seedpod is an opinionated set of APIs meant to be well designed, easy to use, an
 
 ## Get Seedpod
 ### Manual Package Installation
-You can download the latest release of **Seedpod** from the [GitHub Releases page](https://github.com/daikon-games/gm-seedpod/releases), or from our [itch.io page](https://nickavv.itch.io/gm-seedpod).
+You can download the latest release of **Seedpod** from the [GitHub Releases page](https://github.com/daikon-games/gm-seedpod/releases), or from our [itch.io page](https://nickavv.itch.io/seedpod-for-gamemaker).
 
 Once you have downloaded the the package, in GameMaker click on the **Tools** menu and select **Import Local Package**. Choose the `.yymps` file you downloaded, and import any or all of the Seedpod scripts.
 
 ### GameMaker Marketplace
-**Seedpod** can be downloaded directly from the GameMaker Marketplace. Simply visit the [Marketplace page]() and click the **Add to Account** button.
+**Seedpod** can be downloaded directly from the GameMaker Marketplace. Simply visit the [Marketplace page](https://marketplace.yoyogames.com/assets/10806/seedpod) and click the **Add to Account** button.
 
 ## Seedpod Basics
 Seedpod Basics (`scr_seedpod_basics`) is a collection of general purpose APIs to make GameMaker programming easier and faster.
