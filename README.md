@@ -1,5 +1,7 @@
 # Seedpod for GameMaker
 
+![Seedpod Banner Image](/images/banner.png)
+
 **Seedpod** is Daikon Games' collection of the APIs we think GML is missing. Every game Daikon creates includes these functions as our first step.
 
 Seedpod is an opinionated set of APIs meant to be well designed, easy to use, and enhance your GameMaker programming experience. The collection is split into multiple scripts so you can import everything, or just the category of scripts you need!
