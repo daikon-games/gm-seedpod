@@ -303,3 +303,7 @@ A string containing the number `value` but padded out to `amount` characters min
 return string_pad(coins, 3, "0");
 ```
 The above code will pad out a `coins` variable to 3 places using the character `0`. For instance, if `coins` is equal to `56` then the above code will return the string `"056"`. Useful for displaying data in game UIs.
+
+## Licensing
+
+Seedpod for GameMaker is licensed under Creative Commons 0. Essentially, you may use it, change it, ship it, and share it with absolutely no restrictions.
