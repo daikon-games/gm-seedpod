@@ -102,6 +102,55 @@ if (in_array(currentState, [playerState.jumping, playerState.falling])) {
 ```
 The above code assumes there is an enumeration of states called `playerState` which describes a state machine for a character controller. It uses `in_array` to test if the current state is in an array describing states where the player is in the air, and increments a frame counter if so. This could be used to measure how long the player was in the air and apply particle effects or fall damage or the like when they land.
 
+### array_shuffle
+
+This function lets you randomly shuffle the values of an existing array
+
+```gml
+array_shuffle(array)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`array` | Array | The array whose values to shuffle |
+
+#### Returns
+
+A copy of the input array whose items have been randomly rearranged
+
+#### Example
+
+```gml
+// Shuffle the deck of cards
+deck = array_shuffle(deck);
+```
+The above code assumes there is an array named `deck` which contains multiple items. Upon calling `array_shuffle`, the newly shuffled array is reassigned to the same variable, however
+if one wanted to preserve the original array the output of `array_shuffle` could be assigned
+to a different variable instead.
+
+### array_concat
+
+This function lets you combine two existing arrays
+
+```gml
+array_concat(array1, array2)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`array1` | Array | The first input array |
+|`array2` | Array | The second input array |
+
+#### Returns
+
+A new array whose values are those of `array1` followed by those of `array2`.
+
+#### Example
+
+```gml
+// Combine the inventory and the shoping basket contents
+var newInventory = array_concat(inventory, shoppingBasket);
+```
+The above code assumes there are two pre-existing arrays, one called `inventory` and one called `shoppingBasket`. It creates a new variable, `newInventory` and assigns into it the combined `inventory` and `shoppingBasket` arrays. `newInventory`'s length will be the lengths of `inventory` and `shoppingBasket` combined, and its values will be all of those of `inventory`, followed by all of those of `shoppingBasket`.
+
 ### choose_from
 
 This function acts similarly to the built-in `choose`, in that it randomly selects one of a list of items. Unlike `choose` which uses a variable amount of arguments, `choose_from` returns a random item from an array. This can be useful for choosing from a programatically defined set of items rather than a pre-defined one.
@@ -279,6 +328,33 @@ if (string_starts_with(testString, "Daikon")) {
 }
 ```
 The above code will print `It's a prefix!` to the output console, because the string `testString` does in fact start with the string `"Daikon"`.
+
+### string_ends_with
+
+This function lets you test whether a string ends with a given suffix.
+
+```gml
+string_ends_with(input, suffix)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`input` | String | The string to test |
+|`prefix` | String | A string that is the potential suffix of `input` |
+
+#### Returns
+
+`true` if the string `suffix` is at the end of the string `input`, `false` if not.
+
+#### Example
+
+```gml
+var testString = "Daikon Games are fun for the whole family";
+if (string_ends_with(testString, "family")) {
+    echo ("It's a suffix!")
+}
+```
+The above code will print `It's a suffix!` to the output console, because the string `testString` does in fact end with the string `"family"`.
+
 
 ### string_pad
 

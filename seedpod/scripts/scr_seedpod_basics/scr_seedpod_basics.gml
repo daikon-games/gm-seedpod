@@ -37,6 +37,37 @@ function in_array(value, array) {
 	return false;
 }
 
+/// @function array_shuffle(array)
+/// @param array The input array
+/// @returns A copy of the input array whose items have been randomly rearranged
+function array_shuffle(array) {
+	var length = array_length(array);
+	var result = array_create(length);
+	array_copy(result, 0, array, 0, length);
+	for (var i = 0; i < length; i += 1) {
+	    var j = irandom_range(i, length - 1);
+	    if (i != j)  {
+	        var k = result[i];
+	        result[i] = result[j];
+	        result[j] = k;
+	    }
+	}
+	return result;
+}
+
+/// @function array_concat(array1, array2)
+/// @param array1 The first array
+/// @param arrat2 The second array
+/// @returns A new array whose values are those of array1 followed by those of array2
+function array_concat(array1, array2) {
+	var length1 = array_length(array1);
+	var length2 = array_length(array2);
+	var result = array_create(length1 + length2);
+	array_copy(result, 0, array1, 0, length1);
+	array_copy(result, length1, array2, 0, length2);
+	return result;
+}
+
 /// @function choose_from(choices)
 /// @param choices An array containing values from which to randomly choose
 /// @description as choose() but with an array of options rather than varargs

@@ -48,6 +48,26 @@ function string_starts_with(input, prefix) {
 	return true;
 }
 
+/// @description string_ends_with(input, suffix)
+/// @param input The input string to test
+/// @param suffix The potential suffix of input string to test for
+/// @returns true if the string suffix is the end of the string input, false otherwise
+function string_ends_with(input, suffix) {
+	var suffixStart = string_last_pos(suffix, input);
+	// If suffx is longer than input string, or does not appear, it obviously isn't 
+	// a suffix to that input string
+	if (string_length(suffix) > string_length(input) || suffixStart == 0) {
+		return false;
+	}
+
+	if (suffixStart + string_length(suffix) - 1 != string_length(input)) {
+		return false;
+	}
+
+	// If we've fallen through this far, suffix is a suffix of input
+	return true;
+}
+
 /// @function string_pad(value, amount, padChar)
 /// @param value The real number to be turned into a string
 /// @param amount The total number of characters to show
@@ -56,5 +76,3 @@ function string_starts_with(input, prefix) {
 function string_pad(value, amount, padChar) {
 	return string_replace_all(string_format(value, amount, 0), " ", padChar);
 }
-
-
