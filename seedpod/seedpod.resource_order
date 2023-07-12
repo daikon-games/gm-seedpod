@@ -1,0 +1,7 @@
+{
+  "FolderOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"scr_seedpod_strings","order":1,"path":"scripts/scr_seedpod_strings/scr_seedpod_strings.yy",},
+    {"name":"scr_seedpod_instances","order":2,"path":"scripts/scr_seedpod_instances/scr_seedpod_instances.yy",},
+  ],
+}
