@@ -76,81 +76,6 @@ if (keyboard_check_pressed(vk_up)) {
 ```
 The above code will decrement the `selection` variable when the up keyboard key is pressed, and increment it when the down keyboard key is pressed. By using `mod_wrap`, if the decremented value is less than 0 or the incremented value is less than the length of the array `menuItems`, the variable `selection` will instead loop around to the other side rather than going out of bounds.
 
-### in_array
-
-This function lets you test if an array contains a certain value without having to manually write the code to iterate through the array.
-
-```gml
-in_array(value, array)
-```
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-|`value` | Any | The value whose presence to check for in `array` |
-|`array` | Array | The array whose values to check |
-
-#### Returns
-
-`true` if `array` contains any occurrences of `value`, `false` if it does not.
-
-#### Example
-
-```gml
-// Increment airFrame if the player is in the air
-if (in_array(currentState, [playerState.jumping, playerState.falling])) {
-    airFrame += 1;
-}
-```
-The above code assumes there is an enumeration of states called `playerState` which describes a state machine for a character controller. It uses `in_array` to test if the current state is in an array describing states where the player is in the air, and increments a frame counter if so. This could be used to measure how long the player was in the air and apply particle effects or fall damage or the like when they land.
-
-### array_shuffle
-
-This function lets you randomly shuffle the values of an existing array
-
-```gml
-array_shuffle(array)
-```
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-|`array` | Array | The array whose values to shuffle |
-
-#### Returns
-
-A copy of the input array whose items have been randomly rearranged
-
-#### Example
-
-```gml
-// Shuffle the deck of cards
-deck = array_shuffle(deck);
-```
-The above code assumes there is an array named `deck` which contains multiple items. Upon calling `array_shuffle`, the newly shuffled array is reassigned to the same variable, however
-if one wanted to preserve the original array the output of `array_shuffle` could be assigned
-to a different variable instead.
-
-### array_concat
-
-This function lets you combine two existing arrays
-
-```gml
-array_concat(array1, array2)
-```
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-|`array1` | Array | The first input array |
-|`array2` | Array | The second input array |
-
-#### Returns
-
-A new array whose values are those of `array1` followed by those of `array2`.
-
-#### Example
-
-```gml
-// Combine the inventory and the shoping basket contents
-var newInventory = array_concat(inventory, shoppingBasket);
-```
-The above code assumes there are two pre-existing arrays, one called `inventory` and one called `shoppingBasket`. It creates a new variable, `newInventory` and assigns into it the combined `inventory` and `shoppingBasket` arrays. `newInventory`'s length will be the lengths of `inventory` and `shoppingBasket` combined, and its values will be all of those of `inventory`, followed by all of those of `shoppingBasket`.
-
 ### choose_from
 
 This function acts similarly to the built-in `choose`, in that it randomly selects one of a list of items. Unlike `choose` which uses a variable amount of arguments, `choose_from` returns a random item from an array. This can be useful for choosing from a programatically defined set of items rather than a pre-defined one.
@@ -173,6 +98,110 @@ var footstepSound = choose_from(footstepSounds);
 audio_play_sound(footstepSound, 1, false);
 ```
 Assumes that `footstepSounds` is an array defined elsewhere, containing references to multiple sound files. Every time the code above is run it randomly selects an item from `footstepSounds` and plays it.
+
+### array_remove
+
+This function searches an array for a given value, and removes the first instance of it if found
+
+```gml
+array_remove(array, value)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`array` | Array | The array to search |
+|`value` | Any | The value to remove from the array, if found |
+
+#### Returns
+
+N/A
+
+#### Example
+
+```gml
+var sampleArray = ["A", "B", "C", "D"];
+array_remove(sampleArray, "C");
+```
+After the code above is run, the value of `sampleArray` will be `["A", "B", "D"]`.
+
+### round_to_nearest
+
+This function rounds a numeric value to the nearest multiple of another value.
+
+```gml
+round_to_nearest(value, multiple)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`value` | Real | The value to round |
+|`multiple` | Real | The multiple to round `value` to |
+
+#### Returns
+
+The multiple of `multiple` closest to `value`.
+
+#### example
+```gml
+var testVal = 19;
+var testVal2 = 30;
+var roundedVal = round_to_nearest(testVal, 16);
+var roundedVal2 = round_to_nearest(testVal2, 16);
+```
+After the code above is run, the value of `roundedVal` would be 16. The value of `roundedVal2` would be 32.
+
+### real_truncate
+
+This function returns just the integer portion of a real number.
+
+```gml
+real_truncate(real)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`real` | Real | The real value to truncate |
+
+#### Returns
+
+The integer portion of `value`.
+
+#### example
+```gml
+var testVal = 19.24;
+var truncVal = real_truncate(testVal);
+```
+After the code above is run, the value of `truncVal` would be 19.
+
+### variable_struct_get_or_else
+
+This function streamlines the process of checking for a key's existance in a Struct, and getting the value of that key.
+
+```gml
+variable_struct_get_or_else(struct, name, defaultValue)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`struct` | Struct | The struct reference to use |
+|`name` | String | The name of the variable to get |
+|`defaultValue` | Any | The value to return if the named key does not exist in the struct |
+
+#### Returns
+
+The value of the given key in the given struct, or `defaultValue` if the key does not exist in the struct.
+
+#### example
+```gml
+var monster1 = {
+  type: "monster",
+  hp: 15
+};
+var monster2 = {
+  type: "monster",
+  hp: 20,
+  color: c_red
+};
+var monsterColor1 = variable_struct_get_or_else(monster1, "color", c_black);
+var monsterColor2 = variable_struct_get_or_else(monster2, "color", c_black);
+```
+After the code above is run, the value of `monsterColor1` would be `c_black`, whereas the value of `monsterColor2` would be `c_red`. You can see that since the key `color` did not exist in the first struct, the default value of `c_black` was returned, and no manual existence checks were needed.
 
 ## Seedpod Instances
 Seedpod Instances (`scr_seedpod_instances`) is a collection of functions pertaining to live instances in the game at runtime.
@@ -275,86 +304,34 @@ instance_create_layer(center_x(), center_y(), layer, obj_smoke_puff);
 ```
 The above code creates an object at the exact midpoint coordinates of the caller, regardless of the caller's size, sprite, or position.
 
+
+### point_in_bounds
+
+This function tests whether a given X/Y coordinate exists within an instance's bounds, defined by the `bbox_*` internal variables.
+
+```gml
+point_in_bounds(pX, pY)
+```
+| Argument | Type | Description |
+| -------- | ---- | ----------- |
+|`pX` | Real | The X coordinate to test |
+|`pY` | Real | The Y coordinate to test |
+
+#### Returns
+
+True if `pX, pY` falls within the `bbox` bounds of this instance.
+
+#### Example
+
+```gml
+if (point_in_bounds(mouse_x, mouse_y)) {
+  change_sprite(spr_moused_over);
+}
+```
+The above code tests whether the mouse cursor's room position is over the given instance. If so, it changes the instances sprite using `change_sprite`.
+
 ## Seedpod Strings
 Seedpod Instances (`scr_seedpod_strings`) is a collection of functions useful for string data manipulation
-
-### string_split
-
-This function takes a string and splits it into an array of parts, as delimited by a provided delimiter character.
-
-```gml
-string_split(input, delimiter)
-```
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-|`input` | String | The string to be split |
-|`delimiter` | String | A single-character string to use as the delimiter character for splitting `input` |
-
-#### Returns
-
-An array containing the parts of `input` separated by `delimiter`. `delimiter` is not included in the output.
-
-#### Example
-
-```gml
-var columns = "argument,type,description";
-var parts = string_split(columns, ",");
-```
-The above code will split the string `columns` using the comma character. The data contained in the variable `parts` after this code runs will be:
-`["argument", "type", "description"]`.
-
-### string_starts_with
-
-This function lets you test whether a string starts with a given prefix.
-
-```gml
-string_starts_with(input, prefix)
-```
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-|`input` | String | The string to test |
-|`prefix` | String | A string that is the potential prefix of `input` |
-
-#### Returns
-
-`true` if the string `prefix` is at the start of the string `input`, `false` if not.
-
-#### Example
-
-```gml
-var testString = "Daikon Games are fun for the whole family";
-if (string_starts_with(testString, "Daikon")) {
-    echo ("It's a prefix!")
-}
-```
-The above code will print `It's a prefix!` to the output console, because the string `testString` does in fact start with the string `"Daikon"`.
-
-### string_ends_with
-
-This function lets you test whether a string ends with a given suffix.
-
-```gml
-string_ends_with(input, suffix)
-```
-| Argument | Type | Description |
-| -------- | ---- | ----------- |
-|`input` | String | The string to test |
-|`prefix` | String | A string that is the potential suffix of `input` |
-
-#### Returns
-
-`true` if the string `suffix` is at the end of the string `input`, `false` if not.
-
-#### Example
-
-```gml
-var testString = "Daikon Games are fun for the whole family";
-if (string_ends_with(testString, "family")) {
-    echo ("It's a suffix!")
-}
-```
-The above code will print `It's a suffix!` to the output console, because the string `testString` does in fact end with the string `"family"`.
-
 
 ### string_pad
 

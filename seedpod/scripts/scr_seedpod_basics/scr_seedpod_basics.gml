@@ -35,7 +35,7 @@ function choose_from(_choices) {
 
 /// @function array_remove(_array, _value)
 /// @param {Array<Any>} _array The array to operate on
-/// @param {<Any>} _value The value to find and remove within the array
+/// @param {Any} _value The value to find and remove within the array
 /// @description Searches an array for a specific value, and removes the first instance of it if found
 function array_remove(_array, _value) {
 	var _index = array_get_index(_array, _value);
