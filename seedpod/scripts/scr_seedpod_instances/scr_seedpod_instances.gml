@@ -30,7 +30,7 @@ function change_sprite(_newSpriteIndex) {
 }
 
 /// @function center_x([_inst])
-/// @param {ID.Instance} [_inst] The instance whose X midpoint to find. Optional, will use self if not provided
+/// @param {ID.Instance, Asset.GMObject} [_inst] The instance whose X midpoint to find. Optional, will use self if not provided
 /// @description Returns the midpoint X coordinate of the given instance, calculated using the bbox coordinates
 /// @returns {Real}
 function center_x(_inst = self) {
@@ -38,11 +38,11 @@ function center_x(_inst = self) {
 }
 
 /// @function center_y([_inst])
-/// @param {ID.Instance} [_inst] The instance whose Y midpoint to find. Optional, will use self if not provided
+/// @param {ID.Instance, Asset.GMObject} [_inst] The instance whose Y midpoint to find. Optional, will use self if not provided
 /// @description Returns the midpoint Y coordinate of the given instance, calculated using the bbox coordinates
 /// @returns {Real}
 function center_y(_inst = self) {
-	return _inst.bbox_top + (_inst.bbox_bottom - inst._bbox_top)/2;
+	return _inst.bbox_top + (_inst.bbox_bottom - _inst.bbox_top)/2;
 }
 
 /// @function point_in_bounds(_pX, _pY)
